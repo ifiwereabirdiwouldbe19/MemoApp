@@ -1,12 +1,61 @@
-import {  Text, View } from "react-native";
+import { container } from "googleapis/build/src/apis/container";
+import {  Text, View,StyleSheet } from "react-native";
 
 const  Index = (): JSX.Element => {
   return (
-    <View>
+    <View style={styles.container}>
       <View >
-        <Text >Hello World</Text>
+        <View>
+          <Text>
+            Memo App
+          </Text>
+        </View>
+      </View>
+      <View>
+
+        <View>
+          <View>
+            <Text>買い物リスト</Text>
+            <Text>2025年10月1日 10:00</Text>
+          </View>
+          <View>
+            <Text>x</Text>
+          </View>
+        </View>
+
+        <View>
+          <View>
+            <Text>買い物リスト</Text>
+            <Text>2025年10月1日 10:00</Text>
+          </View>
+          <View>
+            <Text>x</Text>
+          </View>
+        </View>
+
+        <View>
+          <View>
+            <Text>買い物リスト</Text>
+            <Text>2025年10月1日 10:00</Text>
+          </View>
+          <View>
+            <Text>x</Text>
+          </View>
+        </View>
+
+      </View>
+      <View>
+        <Text>+</Text>
       </View>
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
+
 export default Index
