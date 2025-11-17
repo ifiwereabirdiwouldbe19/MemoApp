@@ -1,4 +1,4 @@
-import {View ,Text,TextInput,StyleSheet} from 'react-native';
+import {View ,Text,TextInput,StyleSheet, Alert} from 'react-native';
 
 import Header from '../../components/Header';
 import Button from '../../components/Button';
@@ -11,7 +11,7 @@ const Signup=():JSX.Element=>{
                  <Text style={styles.title}>Sign Up</Text>
                  <TextInput style={styles.input} value='Email Address'/>
                  <TextInput style={styles.input} value='Password' />
-                 <Button label="submit"/>
+                 <Button onPress={()=>{Alert.alert('pressed!')}} label="submit"/>
                  <View style={styles.footer}>
                     <Text style={styles.footerText}>Already registered?</Text>
                     <Text style={styles.footerLink}>Log in!</Text>
