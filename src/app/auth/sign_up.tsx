@@ -1,20 +1,27 @@
-import {View ,Text,TextInput,StyleSheet, Alert} from 'react-native';
+import {View ,Text,TextInput,StyleSheet,TouchableOpacity, Alert} from 'react-native';
 
-import Header from '../../components/Header';
+import { Link,router } from 'expo-router';
 import Button from '../../components/Button';
+
+const handlePress=():void =>{
+    return router.push('/memo/list');
+}
 
 const Signup=():JSX.Element=>{
     return(
         <View style={styles.contatiner}>
-            <Header />
             <View style={styles.inner}>
                  <Text style={styles.title}>Sign Up</Text>
                  <TextInput style={styles.input} value='Email Address'/>
                  <TextInput style={styles.input} value='Password' />
-                 <Button onPress={()=>{Alert.alert('pressed!')}} label="submit"/>
+                 <Button onPress={handlePress} label="submit"/>
                  <View style={styles.footer}>
                     <Text style={styles.footerText}>Already registered?</Text>
-                    <Text style={styles.footerLink}>Log in!</Text>
+                    <Link href="/auth/log_in" asChild>
+                         <TouchableOpacity>
+                            <Text style={styles.footerLink}>Log in!</Text>
+                        </TouchableOpacity>
+                    </Link>
                  </View>
 
             </View>
