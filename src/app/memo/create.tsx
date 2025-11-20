@@ -5,9 +5,27 @@ import Circlebutton from "../../components/circleButton";
 import Icon from "../../components/icon";
 import { container } from "googleapis/build/src/apis/container";
 import { router } from "expo-router";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../config";
 
-const handlePress=():void=>{
-    router.back()
+const handlePress=async():void=>{
+    addDoc(collection(db,'memos'),{
+        bodyText: 'test'
+    })
+    .then((docRef)=>{
+        console.log('Success!!!! Document written with ID: ',docRef.id);
+        router.back()
+    })
+    .catch((error)=>{
+        console.log(error);
+    });
+
+    // await addDoc(collection(db,'memos'),{
+    //     bodyText: 'test2'
+    // }).catch((error)=>{
+    //     console.log(error);
+    // });
+    // router.back()
 }
 
 const   Create = (): JSX.Element => {
