@@ -1,4 +1,4 @@
-import {View , TextInput,StyleSheet,KeyboardAvoidingView
+import {View , TextInput,StyleSheet
 } from "react-native";
 
 import Circlebutton from "../../components/circleButton";
@@ -7,6 +7,8 @@ import { container } from "googleapis/build/src/apis/container";
 import { router } from "expo-router";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { useState } from "react";
+
+import KeyboardAvoidingView  from "../../components/KeyboardAvoidingView";
 import { db,auth } from "../../config";
 
 const handlePress=(bodyText:  string):void=>{
@@ -35,13 +37,14 @@ const handlePress=(bodyText:  string):void=>{
 const   Create = (): JSX.Element => {
     const [bodyText,setBodyText]=useState('');
     return(
-        <KeyboardAvoidingView behavior="height" style={styles.container}>
+        <KeyboardAvoidingView style={styles.container}>
             <View style={styles.inputContainer}> 
                 <TextInput 
                 multiline 
                 style={styles.input} 
                 value={bodyText}
                 onChangeText={(text)=>{setBodyText(text)}}
+                autoFocus
                 />
             </View>
             <Circlebutton onPress={()=>{handlePress(bodyText)}}>
