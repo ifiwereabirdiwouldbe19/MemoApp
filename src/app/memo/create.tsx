@@ -5,12 +5,16 @@ import Circlebutton from "../../components/circleButton";
 import Icon from "../../components/icon";
 import { container } from "googleapis/build/src/apis/container";
 import { router } from "expo-router";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../config";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { useState } from "react";
+import { db,auth } from "../../config";
 
-const handlePress=async():void=>{
-    addDoc(collection(db,'memos'),{
-        bodyText: 'test'
+const handlePress=(bodyText:  string):void=>{
+    if(auth.currentUser === null){return}
+    const ref = collection(db,`users/${auth.currentUser.uid}/memos`);
+    addDoc(ref,{
+        bodyText,
+        updatedAt: Timestamp.fromDate(new Date())
     })
     .then((docRef)=>{
         console.log('Success!!!! Document written with ID: ',docRef.id);
@@ -29,12 +33,18 @@ const handlePress=async():void=>{
 }
 
 const   Create = (): JSX.Element => {
+    const [bodyText,setBodyText]=useState('');
     return(
         <KeyboardAvoidingView behavior="height" style={styles.container}>
             <View style={styles.inputContainer}> 
-                <TextInput multiline style={styles.input} value=""/>
+                <TextInput 
+                multiline 
+                style={styles.input} 
+                value={bodyText}
+                onChangeText={(text)=>{setBodyText(text)}}
+                />
             </View>
-            <Circlebutton onPress={handlePress}>
+            <Circlebutton onPress={()=>{handlePress(bodyText)}}>
                 <Icon name="check" size={40} color="#ffffff"/>
             </Circlebutton>
         </KeyboardAvoidingView>
