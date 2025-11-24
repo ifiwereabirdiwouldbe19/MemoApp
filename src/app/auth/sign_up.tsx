@@ -10,6 +10,9 @@ const handlePress=(email: string, password:string):void =>{
     createUserWithEmailAndPassword(auth,email,password)
     .then((userCredential)=>{
         console.log(userCredential.user.uid);
+
+        
+        // ユーザーリスト画面に遷移
         router.replace('/memo/list');
     })
     .catch((error)=>{

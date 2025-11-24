@@ -7,6 +7,7 @@ import { useEffect,useState } from "react";
 import Circlebutton from "../../components/circleButton";
 import { auth,db} from "../../config";
 import { type Memo } from "../../../types/memo";
+import { getAuth, sendEmailVerification } from "firebase/auth";
 
 const handlePress=( id : string):void=>{
     router.push({pathname:"/memo/edit",params:{id}});
